@@ -295,7 +295,8 @@ body {
 .session-meta {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
     margin-bottom: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.04);
     padding-top: 1.2rem;
@@ -542,7 +543,16 @@ body {
         padding: 0 1rem 3rem 1rem;
     }
     .main-heading {
-        font-size: 2rem;
+        font-size: 2.1rem;
+        line-height: 1.2;
+    }
+    .logo {
+        width: 85px;
+        height: 85px;
+    }
+    .logo-container {
+        padding: 8px;
+        margin-bottom: 1.5rem;
     }
     .dashboard-meta {
         flex-direction: column;
@@ -552,6 +562,18 @@ body {
         width: 100%;
     }
     .grid-col {
-        padding: 1.8rem;
+        padding: 1.5rem 1.2rem;
+    }
+    .btn {
+        width: 100%;
+    }
+    .resource-item {
+        padding: 0.8rem;
+    }
+    .resource-info {
+        gap: 0.6rem;
+    }
+    .resource-name {
+        font-size: 0.85rem;
     }
 }
