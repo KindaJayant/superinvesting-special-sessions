@@ -322,7 +322,7 @@ body {
     letter-spacing: 0.02em;
 }
 
-#row-3 .date-item {
+#row-4 .date-item {
     color: #60a5fa; /* Blue accent for latest session date to contrast */
     background: rgba(59, 130, 246, 0.1);
     border-color: rgba(59, 130, 246, 0.25);
@@ -385,7 +385,7 @@ body {
     padding-left: 0.6rem;
 }
 
-#row-3 .resources-heading {
+#row-4 .resources-heading {
     border-left-color: var(--emerald-accent);
 }
 
