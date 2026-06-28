@@ -1,67 +1,51 @@
-/* CSS Design System for SuperInvesting.ai Landing Page Overhaul */
+/* CSS Design System for SuperInvesting.ai - Premium Sci-Fi Bento Layout */
 
 :root {
-    --bg-dark: #07070c;
-    --bg-card: rgba(15, 15, 27, 0.65);
+    --bg-dark: #05030a;
+    --bg-card: rgba(255, 255, 255, 0.02);
     --border-color: rgba(255, 255, 255, 0.06);
-    --border-hover: rgba(255, 255, 255, 0.15);
+    --border-hover: rgba(167, 139, 250, 0.35);
     
-    /* High-End Palette */
-    --purple-glow: rgba(139, 92, 246, 0.12);
-    --purple-accent: #9d4edd;
-    --purple-accent-rgb: 157, 78, 221;
+    /* Neon gradients like EQ */
+    --purple-accent: #a78bfa;
+    --purple-glow: rgba(167, 139, 250, 0.2);
     
-    --emerald-glow: rgba(16, 185, 129, 0.1);
+    --blue-accent: #3b82f6;
+    --blue-glow: rgba(59, 130, 246, 0.15);
+
     --emerald-accent: #10b981;
-    --emerald-accent-rgb: 16, 185, 129;
+    --emerald-glow: rgba(16, 185, 129, 0.2);
     
     --text-primary: #f3f4f6;
-    --text-secondary: #9ca3af;
-    --text-muted: #6b7280;
+    --text-secondary: #a1a1aa;
+    --text-muted: #52525b;
     
-    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
-    background-color: var(--bg-dark);
+    /* Rich, vibrant cyberpunk background mesh gradient */
+    background: 
+        radial-gradient(circle at 10% 15%, rgba(167, 139, 250, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 90% 85%, rgba(59, 130, 246, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.07) 0%, transparent 55%),
+        linear-gradient(135deg, #05030a 0%, #0c0817 50%, #03040b 100%);
     color: var(--text-primary);
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Outfit', sans-serif;
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
     line-height: 1.5;
 }
 
-/* Background Gradients */
-.glow-bg {
-    position: fixed;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    filter: blur(140px);
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.5;
-}
-
-.glow-purple {
-    top: -200px;
-    left: -100px;
-    background: radial-gradient(circle, var(--purple-glow) 0%, transparent 70%);
-}
-
-.glow-emerald {
-    bottom: -200px;
-    right: -100px;
-    background: radial-gradient(circle, var(--emerald-glow) 0%, transparent 70%);
-}
-
+/* Sci-fi tech grid overlay */
 .grid-overlay {
     position: fixed;
     top: 0;
@@ -76,97 +60,182 @@ body {
     pointer-events: none;
 }
 
-/* Layout container */
+/* Container spacing */
 .container {
-    max-width: 1300px;
+    max-width: 1350px;
     margin: 0 auto;
-    padding: 0 1.5rem 3rem 1.5rem;
+    padding: 0 1.5rem 4rem 1.5rem;
     position: relative;
     z-index: 2;
 }
 
-/* Header Navigation */
-.header {
-    width: 100%;
-    padding: 1.5rem 2rem;
+/* ==========================================
+   STATE HEADER STYLING
+   ========================================== */
+
+/* /* Header 1: Compact Premium Logo & Heading (Dashboard Mode) */
+.hero-header {
+    text-align: center;
+    padding: 2rem 1.5rem 1rem 1.5rem;
     position: relative;
-    z-index: 10;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    z-index: 2;
 }
 
-.header-nav {
-    max-width: 1300px;
+.logo-container {
+    display: block;
+    margin: 0 auto 0.8rem auto;
+    width: max-content;
+    padding: 8px;
+    border-radius: 50%;
+    background: rgba(16, 16, 30, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 35px rgba(167, 139, 250, 0.2);
+    animation: float 6s ease-in-out infinite;
+}
+
+.logo {
+    display: block;
+    width: 68px;
+    height: 68px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.main-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.85rem;
+    font-weight: 950;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #ffffff 40%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+}
+
+.main-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: var(--emerald-accent);
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(16, 185, 129, 0.35);
+}
+
+/* Header 2: Compact Watch Header (Watch Mode) */
+.watch-header {
+    width: 100%;
+    background: rgba(4, 3, 10, 0.95);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0.85rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: var(--transition);
+}
+
+.watch-nav {
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.back-link {
+.back-dashboard-btn {
     font-family: 'Montserrat', sans-serif;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     color: var(--text-primary);
-    text-decoration: none;
+    padding: 0.45rem 1rem;
+    border-radius: 20px;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
     display: inline-flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.5rem;
+    cursor: pointer;
     transition: var(--transition);
 }
 
-.back-link:hover {
-    color: var(--emerald-accent);
+.back-dashboard-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
-.back-icon {
-    width: 20px;
-    height: 20px;
-    transition: var(--transition);
+.back-arrow-icon {
+    width: 13px;
+    height: 13px;
 }
 
-.back-link:hover .back-icon {
-    transform: translateX(-4px);
+.compact-logo-area {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
 }
 
-.logo-container {
-    padding: 6px;
+.compact-logo {
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
-    background: rgba(15, 15, 27, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.logo {
-    display: block;
-    width: 45px;
-    height: 45px;
     object-fit: contain;
-    border-radius: 50%;
 }
 
-/* Main Splits (Consumption Hub) */
+.compact-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 0.82rem;
+    letter-spacing: 0.15em;
+    color: var(--text-primary);
+}
+
+/* View states toggle based on Body class name */
+body.dashboard-mode .hero-header { display: block; }
+body.dashboard-mode .watch-header { display: none; }
+body.dashboard-mode .consumption-hub { display: none; }
+body.dashboard-mode .dashboard-section { display: block; }
+
+body.watch-mode .hero-header { display: none; }
+body.watch-mode .watch-header { display: block; }
+body.watch-mode .consumption-hub { display: block; }
+body.watch-mode .dashboard-section { display: block; }
+
+
+/* ==========================================
+   WATCH HUB LAYOUT
+   ========================================== */
+
 .consumption-hub {
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.hub-layout {
     display: grid;
-    grid-template-columns: 2.1fr 0.9fr;
+    grid-template-columns: 2.15fr 0.85fr;
     gap: 2rem;
-    margin-top: 2rem;
     align-items: start;
 }
 
-/* Sticky Player Section */
+/* Left Column: Player Section */
 .player-section {
-    position: sticky;
-    top: 20px;
-    align-self: start;
+    width: 100%;
 }
 
 .video-container {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
-    border-radius: 16px;
+    border-radius: 12px;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8);
     background: #000;
 }
 
@@ -178,106 +247,110 @@ body {
     height: 100%;
 }
 
-/* Session Info details */
 .session-info {
-    margin-top: 1.5rem;
-    padding: 0 0.5rem;
+    margin-top: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
 }
 
 .session-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 800;
-    line-height: 1.25;
+    line-height: 1.35;
     letter-spacing: -0.01em;
     color: var(--text-primary);
-    margin-bottom: 0.8rem;
 }
 
 .session-meta {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1.2rem;
-    margin-bottom: 1.2rem;
+    gap: 0.8rem;
 }
 
 .date-highlight {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 700;
     color: var(--emerald-accent);
 }
 
 .duration-badge {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 0.25rem 0.6rem;
-    border-radius: 6px;
-    font-size: 0.8rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.72rem;
     font-weight: 600;
     color: var(--text-secondary);
 }
 
 .watch-on-yt {
-    color: var(--text-muted);
-    font-size: 0.85rem;
+    color: #f87171;
+    font-size: 0.8rem;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.15);
     transition: var(--transition);
 }
 
 .watch-on-yt:hover {
-    color: var(--text-primary);
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.3);
 }
 
 .external-icon {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
 }
 
 .session-desc {
     color: var(--text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.6;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-top: 0.2rem;
 }
 
-/* Resources Panel (Right Column) */
+/* Right Column: Resources Section */
 .resources-section {
+    width: 100%;
     position: sticky;
-    top: 20px;
+    top: 90px;
 }
 
 .resources-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 1.5rem;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    position: relative;
-    overflow: hidden;
+    border-radius: 12px;
+    padding: 1.25rem;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
 }
 
 .resources-header {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    margin-bottom: 1.2rem;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    padding-bottom: 0.8rem;
+    padding-bottom: 0.6rem;
 }
 
 .resource-count-badge {
     background: rgba(16, 185, 129, 0.1);
     color: var(--emerald-accent);
     border: 1px solid rgba(16, 185, 129, 0.2);
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     font-weight: 700;
-    padding: 0.2rem 0.5rem;
+    padding: 0.15rem 0.4rem;
     border-radius: 4px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -285,7 +358,7 @@ body {
 
 .resources-heading {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: 700;
     color: var(--text-primary);
 }
@@ -293,14 +366,14 @@ body {
 .resource-list {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 0.7rem;
 }
 
 .resource-item {
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.01);
     border: 1px solid rgba(255, 255, 255, 0.04);
-    border-radius: 10px;
-    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    padding: 0.75rem 0.9rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -310,7 +383,7 @@ body {
 }
 
 .resource-item:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.04);
     border-color: var(--border-hover);
     transform: translateX(2px);
 }
@@ -318,40 +391,34 @@ body {
 .resource-info {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.6rem;
 }
 
 .res-icon {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
 }
 
-.pdf-icon {
-    color: #f87171;
-}
-
-.slides-icon {
-    color: #fbbf24;
-}
-
-.doc-icon {
-    color: #60a5fa;
-}
+.pdf-icon { color: #f87171; }
+.slides-icon { color: #fbbf24; }
+.doc-icon { color: #60a5fa; }
 
 .resource-name {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: 500;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 180px;
+    max-width: 140px;
 }
 
 .arrow-icon {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     color: var(--text-muted);
     transition: var(--transition);
+    flex-shrink: 0;
 }
 
 .resource-item:hover .arrow-icon {
@@ -359,146 +426,359 @@ body {
     transform: translate(2px, -2px);
 }
 
-/* Section Dividers */
 .section-divider {
     border: 0;
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05) 50%, transparent);
-    margin: 3rem 0;
+    margin: 2.5rem 0;
 }
 
-/* Playlist / Playlist Grid */
-.playlist-section {
-    margin-top: 1rem;
+/* ==========================================
+   UNIFORM DASHBOARD GRID LAYOUT
+   ========================================== */
+
+.dashboard-section {
+    margin-top: 0.5rem;
 }
 
-.playlist-heading {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.4rem;
-    font-weight: 800;
-    letter-spacing: -0.01em;
-    margin-bottom: 1.5rem;
+/* Centered Top Filter Bar */
+.search-wrapper {
+    width: 100%;
+    max-width: 720px; /* Increased from 580px */
+    margin: 0 auto 2.5rem auto;
 }
 
-.playlist-grid {
+.search-box {
+    position: relative;
+    width: 100%;
+}
+
+.search-box input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.9rem 1.2rem 0.9rem 3.2rem; /* Increased padding */
+    border-radius: 30px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1.05rem; /* Increased from 0.9rem */
+    transition: var(--transition);
+    outline: none;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+}
+
+.search-box input:focus {
+    border-color: rgba(167, 139, 250, 0.4);
+    box-shadow: 0 0 20px rgba(167, 139, 250, 0.15);
+}
+
+.search-icon {
+    position: absolute;
+    left: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px; /* Increased from 16px */
+    height: 20px; /* Increased from 16px */
+    color: var(--text-muted);
+}
+
+/* Uniform 2-Column Grid Layout */
+.sessions-grid-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
 }
 
-/* Compact playlist card (~80px tall) */
-.playlist-card {
-    height: 80px;
-    background: rgba(255, 255, 255, 0.015);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 0.8rem 1.2rem;
+/* Bento Session Card */
+.session-grid-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2.2rem;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 330px;
     cursor: pointer;
     transition: var(--transition);
     position: relative;
     overflow: hidden;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.04), 0 15px 35px rgba(0, 0, 0, 0.35);
 }
 
-.playlist-card:hover {
+.session-grid-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(167, 139, 250, 0.12);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.card-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card-session-badge {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #c084fc;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.5rem;
+    background: rgba(157, 78, 221, 0.1);
+    border: 1px solid rgba(157, 78, 221, 0.25);
+    border-radius: 4px;
+}
+
+.card-duration-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    padding: 0.2rem 0.5rem;
     background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
 }
 
-.card-status-inactive {
-    font-size: 0.9rem;
+.card-date-badge {
+    font-size: 0.72rem;
     color: var(--text-muted);
-    transition: var(--transition);
+    font-weight: 600;
 }
 
-.playlist-card:hover .card-status-inactive {
-    color: var(--text-primary);
-    transform: scale(1.1);
+/* Newest Session Glowing Badge styling */
+.newest-badge {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #fca5a5;
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    letter-spacing: 0.05em;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.1);
 }
 
-.card-details {
+.pulse-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #ef4444;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 1.6s infinite;
+}
+
+.card-middle {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    overflow: hidden;
 }
 
-.card-title {
+.card-session-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
+    font-size: 1.45rem;
+    font-weight: 900;
+    line-height: 1.35;
     color: var(--text-primary);
-    white-space: nowrap;
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
-    margin-bottom: 0.2rem;
 }
 
-.card-meta {
-    font-size: 0.8rem;
+.card-session-desc {
     color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-bottom {
+    margin-top: 0.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    padding-top: 0.8rem;
+}
+
+/* EQ-Inspired Circle Play Trigger */
+.premium-play-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+}
+
+.play-circle-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.play-icon {
+    width: 11px;
+    height: 11px;
+    color: var(--text-primary);
+    transform: translateX(1px); /* optical alignment */
+    transition: var(--transition);
+}
+
+.play-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+/* Hover States for play trigger */
+.session-grid-card:hover .play-circle-btn {
+    background: var(--purple-accent);
+    border-color: var(--purple-accent);
+    box-shadow: 0 0 15px rgba(167, 139, 250, 0.4);
+}
+
+.session-grid-card:hover .play-text {
+    color: var(--text-primary);
+}
+
+/* Featured Bento Card (Keeps premium border glow but spans 1 column for grid uniformity) */
+.session-grid-card.featured-card {
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.06) 0%, rgba(16, 185, 129, 0.01) 100%);
+    border-color: rgba(167, 139, 250, 0.2);
+}
+
+.session-grid-card.featured-card:hover {
+    border-color: rgba(167, 139, 250, 0.45);
+    box-shadow: 0 15px 35px rgba(167, 139, 250, 0.12);
 }
 
 /* Active State (NOW PLAYING) */
-.active-card {
-    background: rgba(16, 185, 129, 0.08);
-    border-color: rgba(16, 185, 129, 0.35);
-    box-shadow: 0 0 20px rgba(16, 185, 129, 0.05);
+.active-grid-card {
+    border-color: var(--emerald-accent);
+    background: rgba(16, 185, 129, 0.02);
 }
 
-.active-card:hover {
-    background: rgba(16, 185, 129, 0.1);
-    border-color: rgba(16, 185, 129, 0.45);
+.active-grid-card .play-circle-btn {
+    background: var(--emerald-accent);
+    border-color: var(--emerald-accent);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
 }
 
-.card-status {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 800;
-    color: var(--emerald-accent);
-    letter-spacing: 0.05em;
-    white-space: nowrap;
-    text-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
-}
-
-.active-card .card-title {
+.active-grid-card .play-text {
     color: var(--emerald-accent);
 }
 
-/* Footer styling */
+.active-grid-card .card-session-title {
+    color: var(--emerald-accent);
+}
+
+/* Footer Section */
 .footer {
     text-align: center;
-    padding: 3rem 2rem 2.5rem 2rem;
+    padding: 3rem 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.03);
+    position: relative;
+    z-index: 2;
 }
 
 .footer p {
-    font-size: 0.8rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
     color: var(--text-muted);
 }
 
-/* Responsive Overrides (Phone & Tablet Friendly) */
+/* Keyframes */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ==========================================
+   RESPONSIVE DESIGN (Tablets and Phones)
+   ========================================== */
+
 @media (max-width: 992px) {
-    .consumption-hub {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+    .hub-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
     }
     
     .resources-section {
         position: static;
     }
     
-    .session-title {
+    .main-heading {
         font-size: 1.8rem;
+        letter-spacing: 0.1em;
+    }
+    
+    .session-title {
+        font-size: 1.4rem;
+    }
+    
+    /* Bento Grid adapts on tablets */
+    .sessions-grid-layout {
+        grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 768px) {
-    /* Mobile-Specific Resources horizontal scroll layout */
+    .hero-header {
+        padding: 4rem 1rem 2rem 1rem;
+    }
+
+    .main-heading {
+        font-size: 1.5rem;
+        letter-spacing: 0.1em;
+    }
+
+    .main-description {
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+    }
+
+    /* Mobile Resource pill horizontal scroll bar styling */
     .resources-card {
-        padding: 1rem;
+        padding: 0.8rem 0;
         background: transparent;
         border: none;
         backdrop-filter: none;
@@ -508,69 +788,67 @@ body {
     .resources-header {
         border-bottom: none;
         padding-bottom: 0;
-        margin-bottom: 0.8rem;
+        margin-bottom: 0.6rem;
+        padding-left: 0.5rem;
     }
     
     .resource-list {
         flex-direction: row;
         overflow-x: auto;
-        gap: 0.8rem;
-        padding-bottom: 0.8rem;
-        scrollbar-width: none; /* Hide scrollbar Firefox */
+        gap: 0.6rem;
+        padding: 0.2rem 0.5rem 0.8rem 0.5rem;
+        scrollbar-width: none;
     }
     
     .resource-list::-webkit-scrollbar {
-        display: none; /* Hide scrollbar Chrome/Safari */
+        display: none;
     }
     
     .resource-item {
         flex-shrink: 0;
-        padding: 0.6rem 1rem;
+        padding: 0.5rem 0.85rem;
         border-radius: 20px;
         background: rgba(255, 255, 255, 0.04);
         border: 1px solid rgba(255, 255, 255, 0.08);
     }
     
     .resource-name {
-        font-size: 0.8rem;
-        max-width: 140px;
-    }
-    
-    .resource-item .arrow-icon {
-        display: none; /* Hide arrow on mobile to save space */
-    }
-
-    .playlist-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .header {
-        padding: 1rem;
-    }
-    
-    .back-link {
-        font-size: 0.95rem;
+        font-size: 0.78rem;
+        max-width: 120px;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
     .container {
         padding: 0 1rem 2rem 1rem;
     }
-    
-    .session-title {
-        font-size: 1.45rem;
+
+    .sessions-grid-layout {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
-    
-    .session-meta {
-        gap: 0.8rem;
+
+    .session-grid-card {
+        height: auto;
+        min-height: 220px;
+        padding: 1.25rem;
     }
-    
-    .date-highlight {
-        font-size: 0.85rem;
+
+    .card-session-desc {
+        margin-bottom: 0.8rem;
+        -webkit-line-clamp: 2;
     }
-    
-    .playlist-card {
-        padding: 0.8rem;
+
+    .watch-header {
+        padding: 0.75rem 1rem;
+    }
+
+    .compact-logo-area {
+        gap: 0.4rem;
+    }
+
+    .compact-brand {
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
     }
 }

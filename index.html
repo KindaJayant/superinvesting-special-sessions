@@ -8,81 +8,103 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <!-- Ambient glowing backgrounds -->
+<body class="dashboard-mode">
+    <!-- Ambient cyberpunk background mesh & grid -->
     <div class="glow-bg glow-purple"></div>
-    <div class="glow-bg glow-emerald"></div>
+    <div class="glow-bg glow-blue"></div>
     <div class="grid-overlay"></div>
 
-    <header class="header">
-        <div class="header-nav">
-            <a href="https://superinvesting.ai" class="back-link">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="back-icon"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-                Exclusive Bonus Sessions
-            </a>
-            <div class="logo-container">
-                <img src="superinvesting-logo.webp" alt="SuperInvesting Logo" id="logo" class="logo">
+    <!-- 1. Centered Premium Header with Logo -->
+    <header class="hero-header">
+        <div class="logo-container">
+            <img src="superinvesting-logo.webp" alt="SuperInvesting Logo" class="logo">
+        </div>
+        <h1 class="main-heading">SUPERINVESTING.AI</h1>
+        <p class="main-description">EXCLUSIVE BONUS INSIGHT SESSIONS</p>
+    </header>
+
+    <!-- 2. Compact Watch Header (Visible only on Watch Mode) -->
+    <header class="watch-header">
+        <div class="watch-nav">
+            <button class="back-dashboard-btn" onclick="window.location.hash = ''">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="back-arrow-icon"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                DASHBOARD
+            </button>
+            <div class="compact-logo-area">
+                <img src="superinvesting-logo.webp" alt="SuperInvesting Logo" class="compact-logo">
+                <span class="compact-brand">SUPERINVESTING.AI</span>
             </div>
         </div>
     </header>
 
     <main class="container">
-        <!-- Main Consumption Hub (Video + Resources) -->
-        <div class="consumption-hub">
+        
+        <!-- 3. Consumption Hub (Video + Resources, Visible only in Watch Mode) -->
+        <div id="playerHub" class="consumption-hub">
+            <div class="hub-layout">
+                
+                <!-- Left Side: Video Player & Details -->
+                <div class="player-section">
+                    <div class="video-container">
+                        <iframe id="videoPlayer" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="session-info">
+                        <h2 id="sessionTitle" class="session-title">Loading...</h2>
+                        <div class="session-meta">
+                            <span id="sessionDate" class="date-highlight">Loading...</span>
+                            <span id="sessionDuration" class="duration-badge">Loading...</span>
+                            <a id="youtubeExternalLink" href="" target="_blank" class="watch-on-yt">
+                                Watch on YouTube
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="external-icon"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                            </a>
+                        </div>
+                        <p id="sessionDesc" class="session-desc">Loading description...</p>
+                    </div>
+                </div>
+
+                <!-- Right Side: Resources Container -->
+                <div class="resources-section">
+                    <div class="resources-card">
+                        <div class="resources-header">
+                            <span class="resource-count-badge">Included</span>
+                            <h3 class="resources-heading">Resources</h3>
+                        </div>
+                        <div id="resourceList" class="resource-list">
+                            <!-- Rendered dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
             
-            <!-- Left Side: Sticky Video Player & Details -->
-            <div class="player-section">
-                <div class="video-container">
-                    <iframe id="videoPlayer" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
-                <div class="session-info">
-                    <h1 id="sessionTitle" class="session-title">Loading...</h1>
-                    <div class="session-meta">
-                        <span id="sessionDate" class="date-highlight">Loading...</span>
-                        <span id="sessionDuration" class="duration-badge">Loading...</span>
-                        <a id="youtubeExternalLink" href="" target="_blank" class="watch-on-yt">
-                            Watch on YouTube
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="external-icon"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                        </a>
-                    </div>
-                    <p id="sessionDesc" class="session-desc">Loading description...</p>
-                </div>
-            </div>
-
-            <!-- Right Side: Resources Container -->
-            <div class="resources-section">
-                <div class="resources-card">
-                    <div class="card-glow"></div>
-                    <div class="resources-header">
-                        <span class="resource-count-badge">Included</span>
-                        <h3 class="resources-heading">Resources</h3>
-                    </div>
-                    <div id="resourceList" class="resource-list">
-                        <!-- Rendered dynamically -->
-                    </div>
-                </div>
-            </div>
-
+            <hr class="section-divider">
         </div>
 
-        <!-- Divider -->
-        <hr class="section-divider">
+        <!-- 4. Sessions Dashboard Section -->
+        <div class="dashboard-section">
+            
+            <!-- Centered Unified Search Bar (Top of sessions) -->
+            <div class="search-wrapper">
+                <div class="search-box">
+                    <input type="text" id="sessionSearch" placeholder="Search date (e.g., May 16) or session name..." onkeyup="filterSessions()">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </div>
+            </div>
 
-        <!-- Bottom: Playlist (Other Sessions) -->
-        <div class="playlist-section">
-            <h3 class="playlist-heading">More Sessions</h3>
-            <div id="playlistContainer" class="playlist-grid">
-                <!-- Rendered dynamically -->
+            <!-- Dynamic Session Cards Grid (Uniform 2x2 Grid) -->
+            <div id="sessionsGrid" class="sessions-grid-layout">
+                <!-- Session Cards Rendered Dynamically -->
             </div>
         </div>
+
     </main>
 
     <footer class="footer">
-        <p>&copy; 2026 SuperInvesting.ai. All rights reserved. For authorized member use only.</p>
+        <p>&copy; 2026 SUPERINVESTING.AI. All rights reserved. Premium member portal.</p>
     </footer>
 
     <!-- JavaScript to Handle Session State & Dynamic Renders -->
@@ -91,7 +113,7 @@
         const sessions = [
             {
                 id: 1,
-                sessionNumber: "Session 01",
+                sessionNumber: "SESSION 01",
                 title: "Automotive & Pharmaceutical Sector Deep-Dive",
                 desc: "Comprehensive analysis of growth drivers, regulatory environment, and competitive landscape in India's Auto and Pharma sectors.",
                 date: "May 16, 2026",
@@ -104,7 +126,7 @@
             },
             {
                 id: 2,
-                sessionNumber: "Session 02",
+                sessionNumber: "SESSION 02",
                 title: "BESS Sector Analysis & Stock Prompts",
                 desc: "An evaluation of Battery Energy Storage Systems (BESS) trends and customized prompts for screening stocks effectively.",
                 date: "May 24, 2026",
@@ -117,7 +139,7 @@
             },
             {
                 id: 3,
-                sessionNumber: "Session 03",
+                sessionNumber: "SESSION 03",
                 title: "Data Center Sector Analysis & Red Flags",
                 desc: "An inside look at India's booming Data Center industry and crucial red flags to avoid in stock selection.",
                 date: "June 10, 2026",
@@ -130,7 +152,7 @@
             },
             {
                 id: 4,
-                sessionNumber: "Session 04",
+                sessionNumber: "SESSION 04",
                 title: "Renewable & Nuclear Energy Sector Deep-Dive",
                 desc: "Comprehensive analysis of the clean energy transition, scaling solar, wind, and nuclear power infrastructure in India.",
                 date: "June 21, 2026",
@@ -142,19 +164,78 @@
             }
         ];
 
-        // Track Current Session Index (Session 4 is default -> index 3)
-        let currentSessionIndex = 3;
+        let activeSessionIndex = null;
 
-        // Load Session Details into DOM
-        function loadSession(index) {
-            currentSessionIndex = index;
+        // Render Uniform Grid
+        function renderGrid() {
+            const gridContainer = document.getElementById("sessionsGrid");
+            gridContainer.innerHTML = "";
+
+            // Render from newest (Session 4) to oldest (Session 1)
+            for (let i = sessions.length - 1; i >= 0; i--) {
+                const session = sessions[i];
+                const isNewest = (i === 3); // Session 4 is the newest
+                const isActive = (i === activeSessionIndex);
+                
+                const card = document.createElement("div");
+                card.className = `session-grid-card ${isNewest ? 'featured-card' : ''} ${isActive ? 'active-grid-card' : ''}`;
+                card.onclick = () => {
+                    // Update URL Hash to trigger routing
+                    window.location.hash = `session=${i}`;
+                };
+
+                card.innerHTML = `
+                    <div class="card-glow"></div>
+                    <div class="card-top">
+                        <div class="card-badges">
+                            <span class="card-session-badge">${session.sessionNumber}</span>
+                            <span class="card-duration-badge">${session.duration.toUpperCase()}</span>
+                            ${isNewest ? '<span class="newest-badge"><span class="pulse-dot"></span>NEWEST SESSION</span>' : ''}
+                        </div>
+                        <span class="card-date-badge">${session.date.toUpperCase()}</span>
+                    </div>
+                    <div class="card-middle">
+                        <h3 class="card-session-title">${session.title}</h3>
+                        <p class="card-session-desc">${session.desc}</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="premium-play-trigger">
+                            <div class="play-circle-btn">
+                                <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="8 5 19 12 8 19 8 5"></polygon></svg>
+                            </div>
+                            <span class="play-text">${isActive ? 'NOW PLAYING' : 'WATCH SESSION'}</span>
+                        </div>
+                    </div>
+                `;
+                gridContainer.appendChild(card);
+            }
+        }
+
+        // Router handler (Responds to browser hash changes e.g. Back/Forward button clicks)
+        function handleRouting() {
+            const hash = window.location.hash;
+            if (hash.startsWith("#session=")) {
+                const index = parseInt(hash.replace("#session=", ""), 10);
+                if (!isNaN(index) && index >= 0 && index < sessions.length) {
+                    loadSessionData(index);
+                } else {
+                    showDashboardView();
+                }
+            } else {
+                showDashboardView();
+            }
+        }
+
+        // Load Session details into Watch Player Mode
+        function loadSessionData(index) {
+            activeSessionIndex = index;
             const session = sessions[index];
 
-            // 1. Update Video Player Iframe
-            const videoUrl = `https://www.youtube.com/embed/${session.videoId}?rel=0&showinfo=0&modestbranding=1`;
+            // 1. Update Video Player Source
+            const videoUrl = `https://www.youtube.com/embed/${session.videoId}?autoplay=1&rel=0&modestbranding=1`;
             document.getElementById("videoPlayer").src = videoUrl;
 
-            // 2. Update Details
+            // 2. Load Details
             document.getElementById("sessionTitle").innerText = session.title;
             document.getElementById("sessionDate").innerText = session.date;
             document.getElementById("sessionDuration").innerText = session.duration;
@@ -171,7 +252,6 @@
                 resourceItem.target = "_blank";
                 resourceItem.className = "resource-item";
                 
-                // SVG Icons for different types
                 let iconSvg = '';
                 if (res.type === 'pdf') {
                     iconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="res-icon pdf-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>`;
@@ -191,49 +271,58 @@
                 resourceListContainer.appendChild(resourceItem);
             });
 
-            // 4. Render Playlist (Highlights current active session)
-            renderPlaylist();
+            // 4. Switch Body Class to Watch Mode
+            document.body.className = "watch-mode";
+
+            // 5. Update Grid
+            renderGrid();
+
+            // 6. Scroll smoothly to player
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Render Session Switcher Playlist
-        function renderPlaylist() {
-            const playlistContainer = document.getElementById("playlistContainer");
-            playlistContainer.innerHTML = "";
+        // Return to Dashboard View
+        function showDashboardView() {
+            activeSessionIndex = null;
+            document.getElementById("videoPlayer").src = "";
+            document.body.className = "dashboard-mode";
+            
+            // Re-render
+            renderGrid();
 
-            // Render playlist in reverse order (Sessions 4 down to 1)
-            for (let i = sessions.length - 1; i >= 0; i--) {
-                const session = sessions[i];
-                const isActive = (i === currentSessionIndex);
-                
-                const card = document.createElement("div");
-                card.className = `playlist-card ${isActive ? 'active-card' : ''}`;
-                card.onclick = () => loadSession(i);
+            // Scroll top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-                if (isActive) {
-                    card.innerHTML = `
-                        <div class="card-status">▶ NOW PLAYING</div>
-                        <div class="card-details">
-                            <h4 class="card-title">${session.title}</h4>
-                            <span class="card-meta">${session.sessionNumber} &bull; ${session.duration}</span>
-                        </div>
-                    `;
+        // Search and Filter Grid Cards by Title & Date Substrings
+        function filterSessions() {
+            const searchInput = document.getElementById('sessionSearch').value.toLowerCase();
+            const cards = document.querySelectorAll('.session-grid-card');
+            
+            sessions.forEach((session, index) => {
+                const card = cards[sessions.length - 1 - index]; // Map matching index in loop order
+                if (!card) return;
+
+                const matchesTitle = session.title.toLowerCase().includes(searchInput);
+                const matchesDesc = session.desc.toLowerCase().includes(searchInput);
+                const matchesNumber = session.sessionNumber.toLowerCase().includes(searchInput);
+                const matchesDate = session.date.toLowerCase().includes(searchInput);
+
+                if (matchesTitle || matchesDesc || matchesNumber || matchesDate) {
+                    card.style.display = 'flex';
                 } else {
-                    card.innerHTML = `
-                        <div class="card-status-inactive">▶</div>
-                        <div class="card-details">
-                            <h4 class="card-title">${session.title}</h4>
-                            <span class="card-meta">${session.sessionNumber} &bull; ${session.duration}</span>
-                        </div>
-                    `;
+                    card.style.display = 'none';
                 }
-                
-                playlistContainer.appendChild(card);
-            }
+            });
         }
 
-        // Initial Load (Session 4)
+        // Event listener for hash routing
+        window.addEventListener('hashchange', handleRouting);
+
+        // Initial render & routing check
         window.onload = () => {
-            loadSession(3);
+            renderGrid();
+            handleRouting();
         };
     </script>
 </body>
