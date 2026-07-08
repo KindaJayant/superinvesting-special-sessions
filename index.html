@@ -51,6 +51,11 @@
                 <div class="player-section">
                     <div class="video-container">
                         <iframe id="videoPlayer" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <div id="videoPlaceholder" class="video-placeholder" style="display: none;">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="placeholder-icon"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+                            <p class="placeholder-text">Recording Not Available</p>
+                            <span class="placeholder-sub">Resources are available for download on the right</span>
+                        </div>
                     </div>
                     <div class="session-info">
                         <h2 id="sessionTitle" class="session-title">Loading...</h2>
@@ -173,6 +178,18 @@
                 resources: [
                     { name: "IT Sector Special Drive", type: "slides", url: "https://drive.google.com/drive/folders/1DCGO5Wy_NOExq5ux0ZaFmMxCDVmIWko-?usp=drive_link" }
                 ]
+            },
+            {
+                id: 6,
+                sessionNumber: "SESSION 06",
+                title: "India BFSI Sector Analysis & Research",
+                desc: "Indian Banking, Financial Services, and Insurance (BFSI) industry deep-dive. Mapped growth patterns, segment metrics, and valuation models.",
+                date: "July 3, 2026",
+                duration: "Resources Only",
+                videoId: "",
+                resources: [
+                    { name: "BFSI Sector Presentation", type: "pdf", url: "https://drive.google.com/drive/folders/19Dg4-9lSaiYVyjlv59ujHv0KZ-GSSb6j" }
+                ]
             }
         ];
 
@@ -196,6 +213,14 @@
                     window.location.hash = `session=${i}`;
                 };
 
+                const hasVideo = !!session.videoId;
+                const playIconHtml = hasVideo 
+                    ? `<svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="8 5 19 12 8 19 8 5"></polygon></svg>`
+                    : `<svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transform:none; width:13px; height:13px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>`;
+                const playText = hasVideo 
+                    ? (isActive ? 'NOW PLAYING' : 'WATCH SESSION')
+                    : (isActive ? 'VIEWING RESOURCES' : 'VIEW RESOURCES');
+
                 card.innerHTML = `
                     <div class="card-glow"></div>
                     <div class="card-top">
@@ -213,9 +238,9 @@
                     <div class="card-bottom">
                         <div class="premium-play-trigger">
                             <div class="play-circle-btn">
-                                <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="8 5 19 12 8 19 8 5"></polygon></svg>
+                                ${playIconHtml}
                             </div>
-                            <span class="play-text">${isActive ? 'NOW PLAYING' : 'WATCH SESSION'}</span>
+                            <span class="play-text">${playText}</span>
                         </div>
                     </div>
                 `;
@@ -243,16 +268,29 @@
             activeSessionIndex = index;
             const session = sessions[index];
 
-            // 1. Update Video Player Source
-            const videoUrl = `https://www.youtube.com/embed/${session.videoId}?autoplay=1&rel=0&modestbranding=1`;
-            document.getElementById("videoPlayer").src = videoUrl;
+            // 1. Update Video Player or Placeholder Display
+            const videoPlayer = document.getElementById("videoPlayer");
+            const videoPlaceholder = document.getElementById("videoPlaceholder");
+            const ytExternal = document.getElementById("youtubeExternalLink");
+
+            if (session.videoId) {
+                videoPlayer.style.display = "block";
+                videoPlaceholder.style.display = "none";
+                videoPlayer.src = `https://www.youtube.com/embed/${session.videoId}?autoplay=1&rel=0&modestbranding=1`;
+                ytExternal.style.display = "inline-flex";
+                ytExternal.href = `https://www.youtube.com/watch?v=${session.videoId}`;
+            } else {
+                videoPlayer.style.display = "none";
+                videoPlaceholder.style.display = "flex";
+                videoPlayer.src = "";
+                ytExternal.style.display = "none";
+            }
 
             // 2. Load Details
             document.getElementById("sessionTitle").innerText = session.title;
             document.getElementById("sessionDate").innerText = session.date;
             document.getElementById("sessionDuration").innerText = session.duration;
             document.getElementById("sessionDesc").innerText = session.desc;
-            document.getElementById("youtubeExternalLink").href = `https://www.youtube.com/watch?v=${session.videoId}`;
 
             // 3. Render Resources list
             const resourceListContainer = document.getElementById("resourceList");
